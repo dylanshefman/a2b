@@ -4,11 +4,13 @@ import { getRoutes } from "../api/bustimeApi";
 import "./Navbar.css"; // Import the CSS file
 
 const Navbar = () => {
+  console.log("Navbar rendered");
   const [umRoutes, setUmRoutes] = useState([]);
   const [theRideRoutes, setTheRideRoutes] = useState([]);
   const [activeAgency, setActiveAgency] = useState("UM");
 
   useEffect(() => {
+    console.log("Fetching routes...");
     getRoutes("UM").then(setUmRoutes);
     getRoutes("THERIDE").then(setTheRideRoutes);
   }, []);
@@ -18,21 +20,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar-container">
-      <h1>Transit Routes</h1>
+    <div>
       <div className="agency-selector">
-        <div
-          className={`agency-item ${activeAgency === "UM" ? "active" : ""}`}
+        <span
+          className={`agency ${activeAgency === "UM" ? "active" : ""}`}
           onClick={() => handleAgencyClick("UM")}
         >
-          <span className="agency-name">UM</span>
-        </div>
-        <div
-          className={`agency-item ${activeAgency === "THERIDE" ? "active" : ""}`}
+          UM
+        </span>
+        <span
+          className={`agency ${activeAgency === "THERIDE" ? "active" : ""}`}
           onClick={() => handleAgencyClick("THERIDE")}
         >
-          <span className="agency-name">THE RIDE</span>
-        </div>
+          THE RIDE
+        </span>
       </div>
       <RouteList agency={activeAgency} routes={activeAgency === "UM" ? umRoutes : theRideRoutes} />
     </div>

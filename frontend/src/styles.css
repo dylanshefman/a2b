@@ -1,146 +1,36 @@
-@font-face { 
-    font-family: Roboto; 
-    src: url('roboto/Roboto-Black.ttf'); 
-  }
-  
-  #map {
-    z-index: 0;
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
     width: 100%;
-    height: 750px;
-  }
-  
-  #navbar {
-    border-radius: 20px;
-    left: 50px;
-    top: 50px;
-    position: absolute;
-    z-index: 1;
-    width: 250px;
-    height: 50%;
-    float: left;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    overflow: hidden; /* Prevent unwanted scrolling */
+}
+
+.app-container {
+    display: flex;
+    flex-grow: 1; /* Ensures full use of available space */
+}
+
+.sidebar {
+    width: 30%;
+    overflow-y: auto;
     background-color: #fff;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-  }
-  
-  #navbar-top {
-    position: relative;
-    display: flex;
-    border-radius: 20px 20px 0 0;
-    align-items: center;
-    justify-content: center;
-    height: 13%;
-  }
-  
-  #theride-routes-wrapper, #umich-routes-wrapper {
-    flex: 1;
-    height: 50px;
-    vertical-align: top;
-    border-bottom: 1px solid #D3D3D3;
-  }
-  
-  #theride-routes, #umich-routes {
-    overflow: scroll;
-    height: 87%;
-  }
-  
-  #theride-routes-wrapper {
-    border-top-left-radius: 20px;
-    border-right: 1px solid #D3D3D3;
-    background-color: #B9D2E2;
-  }
-  
-  #umich-routes-wrapper {
-    border-top-right-radius: 20px;
-    background-color: #D6EAF8;
-  }
-  
-  #selected-indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    height: 3.5px;
-    background-color: #3F51B5;
-    transition: left 0.3s;
-  }
-  
-  #page2-btn:active ~ #selected-indicator,
-  #page2-btn:focus ~ #selected-indicator {
-    left: 50%;
-  }
-  
-  .circle {
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    padding: 0px;
-    border: 0px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7px;
-    margin-left: 15px;
-    font-size: 16px;
-    font-family: Roboto;
-    font-weight: 500;
-  }
-  
-  .agency {
-    font-family: Roboto;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 0;
-    text-align: center;
-    line-height: 50px;
-  }
-  
-  .route {
-    height: 50px;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+    flex-grow: 1; /* Takes up remaining space */
+    height: 100vh;
+}
+
+.map {
     width: 100%;
-    margin: 0 auto;
-    display: flex;
-    vertical-align: middle;
-    border-bottom: 1px solid #D3D3D3;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  .route-name {
-    font: 14px Roboto;
-    font-weight: 300;
-    line-height: 50px;
-    vertical-align: middle;
-    margin: 0;
-    margin-left: 15px;
-  }
-  
-  .route:hover {
-    background-color: #D6EAF8;
-  }
-  
-  .agency-routes-wrapper {
-    margin: 10px;
-  }
-  
-  .header {
-    cursor: pointer;
-    background-color: #f1f1f1;
-    padding: 10px;
-    margin-bottom: 5px;
-    text-align: center;
-  }
-  
-  .routes-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 10px;
-  }
-  
-  .routes-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
-  
+    height: 100%; /* Ensure the map container has height */
+}
